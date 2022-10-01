@@ -25,6 +25,7 @@ vim.bo.tabstop = 2
 vim.bo.softtabstop = 2
 vim.bo.textwidth = 120
 
+vim.cmd("luafile ~/.config/nvim/lua/statusline/init.lua")
 vim.cmd("set ttimeoutlen=5")
 -- Highlight on yank
 vim.cmd [[
