@@ -83,30 +83,38 @@ function M.setup()
 				require("config.blankline").setup()
 			end,
 		}
-		-- Treesitter
-		use {
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate",
-			config = function()
-				require("config.treesitter").setup()
-			end,
-		}
 		-- LSP
 
 		use {
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
-			wants = { "nvim-lsp-installer" },
+			wants = { "nvim-lsp-installer", "nvim-lsp-installer", "coq_nvim" },
 			config = function()
 				require("config.lsp").setup()
 			end,
 			requires = {
 				"williamboman/nvim-lsp-installer",
+				"ray-x/lsp_signature.nvim",
 			},
 		}
 		
 		-- Completion
+		use {
+			"ms-jpq/coq_nvim",
+			branch = "coq",
+			event = "InsertEnter",
+			opt = true,
+			run = ":COQdeps",
+			config = function()
+				require("config.coq").setup()
+			end,
+			requires = {
+				{ "ms-jpq/coq.artifacts", branch = "artifacts" },
+				{ "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
+			},
+			disable = false,
+		}
 	  if packer_bootstrap then
 			print "Restart Neovim required after installation!"
 	    require("packer").sync()
