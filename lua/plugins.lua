@@ -83,9 +83,30 @@ function M.setup()
 				require("config.blankline").setup()
 			end,
 		}
+		-- Treesitter
+		use {
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+			config = function()
+				require("config.treesitter").setup()
+			end,
+		}
+		-- LSP
 
-		-- Statusline
-
+		use {
+			"neovim/nvim-lspconfig",
+			opt = true,
+			event = "BufReadPre",
+			wants = { "nvim-lsp-installer" },
+			config = function()
+				require("config.lsp").setup()
+			end,
+			requires = {
+				"williamboman/nvim-lsp-installer",
+			},
+		}
+		
+		-- Completion
 	  if packer_bootstrap then
 			print "Restart Neovim required after installation!"
 	    require("packer").sync()

@@ -7,7 +7,7 @@ api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = " "
 
---opt.termguicolors = true -- Enable colors in terminal
+opt.termguicolors = true -- Enable colors in terminal
 opt.hlsearch = true --Set highlight on search	
 opt.number = true --Make line numbers default
 opt.relativenumber = true --Make relative number default
