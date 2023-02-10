@@ -19,7 +19,13 @@ opt.hlsearch = true
 opt.number = true
 opt.relativenumber = true
 opt.breakindent = true
+
 opt.undofile = true
+opt.undodir = vim.fn.expand("~/.nvim/undo/")
+
+opt.backup = true
+opt.backupdir = vim.fn.expand("~/.nvim/backup/")
+
 opt.ignorecase = true
 opt.smartcase = true
 opt.updatetime = 250
