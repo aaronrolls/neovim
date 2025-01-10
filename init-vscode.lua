@@ -1,15 +1,3 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -47,15 +35,11 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 -- Normal Mode
 keymap("n", "n", "nzz", default_opts)
 keymap("n", "N", "Nzz", default_opts)
-keymap("n", "<Leader>ft", "<cmd>NvimTreeToggle<cr>", default_opts)
 keymap("n", "<Leader>yy", '"+yy', default_opts)
 keymap("n", "<Leader>p", '"+p', default_opts)
 keymap("n", "<Leader>P", '"+P', default_opts)
 keymap("n", "<Leader>dd", '"+dd', default_opts)
-keymap("n", "<Leader>fd", "<cmd>Dash<cr>", default_opts)
 keymap("t", "<C-`>", "<C-\\><C-n><Leader>;", default_opts)
-keymap("n", "<Leader>nh", "<cmd>nohl<cr>", default_opts)
-keymap("i", "jk", "<esc>", default_opts)
 keymap("n", "<leader>=", "<C-a>", default_opts)
 keymap("n", "<leader>-", "<C-x>", default_opts)
 
@@ -107,29 +91,10 @@ vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
-if vim.g.shadowvim then
 
-else
 
-require("lazy").setup("plugins")
 
-local gps = require("nvim-navic")
-
-require("lualine").setup({
-	sections = {
-		lualine_c = {
-			{ "filename" },
-			{ gps.get_location, cond = gps.is_available },
-		},
-	},
-})
 
 -- telescope
 
-local telescope = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>ff", telescope.find_files, {})
-vim.keymap.set("n", "<leader>fg", telescope.live_grep, {})
-vim.keymap.set("n", "<leader>fb", telescope.buffers, {})
-vim.keymap.set("n", "<leader>fh", telescope.help_tags, {})
-end
