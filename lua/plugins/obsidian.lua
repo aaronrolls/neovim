@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/Database",
+        path = "~/storage/shared/Documents/Database",
       },
     },
 

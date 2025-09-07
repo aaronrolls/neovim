@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 require("config.lazy")
 
 local opt = vim.opt
-
+vim.cmd("colorscheme carbonfox")
 opt.hlsearch = true
 opt.number = true
 opt.relativenumber = true
@@ -30,6 +30,19 @@ vim.cmd([[
     augroup end
     ]])
 
+--[[
+vim.lsp.config["luals"] = {
+	cmd = {"lua-language-server"},
+	filetypes = {"lua"},
+}
+vim.lsp.enable("luals")
+
+vim.lsp.config["rustls"] = {
+	cmd = {"rust-analyzer"},
+	filetypes = {"rust", "rs"},
+}
+vim.lsp.enable("rustls")
+]]
 local keymap = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true }
@@ -100,7 +113,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 if vim.g.shadowvim then
 
 else
-
 
 -- telescope
 
